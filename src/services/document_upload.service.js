@@ -49,6 +49,8 @@ const upload = multer({
           const fileUrl = file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
           ? `https://docs.google.com/viewer?url=${encodeURIComponent(result.secure_url)}&embedded=true`
           : result.secure_url;
+
+          const fileExtension = path.extname(file.originalname).toLowerCase();
   
           
           fs.unlinkSync(file.path);
@@ -58,6 +60,8 @@ const upload = multer({
             filepath: fileUrl,  
             originalName: file.originalname,
             size: file.size,
+            mimetype: file.mimetype,
+            extension: fileExtension,
             document_url: result.secure_url,
           };
         }));

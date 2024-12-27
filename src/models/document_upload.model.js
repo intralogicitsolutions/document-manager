@@ -17,6 +17,14 @@ const DocumentUploadSchema = new Schema({
         type: Number,
         required: true,
       },
+      mimetype: {  
+        type: String,
+        required: true,
+    },
+    extension: { 
+        type: String,
+        required: true,
+    },
     document_url: {  
         type: String,
         // required: true,
