@@ -4,5 +4,6 @@ module.exports = {
     USER_ALREADY_EXISTS: 'User already exists with same email',
     SUCCESS: 'Success',
     ALREADY_EXISTS: 'Already Exists',
-    UNAUTHORIZED: 'Unauthorized'
+    UNAUTHORIZED: 'Unauthorized',
+    LIMIT_FILE_SIZE: 'File size cannot be larger than 5MB!'
 }
