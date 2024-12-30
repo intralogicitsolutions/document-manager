@@ -160,7 +160,7 @@ const renameFile = async (req, res) => {
     try {
       const file = await DocumentUpload.findOneAndUpdate(
         { filename },
-        { filename: newFilename},
+        { filename: newFilename, originalName: newFilename},
         { new: true }
       );
   
