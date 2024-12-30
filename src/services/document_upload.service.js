@@ -56,7 +56,7 @@ const upload = multer({
           fs.unlinkSync(file.path);
   
           return {
-            filename: result.public_id, 
+            filename: file.filename, 
             filepath: fileUrl,  
             originalName: file.originalname,
             size: file.size,
@@ -114,16 +114,16 @@ const getFiles = async (req, res) => {
 
   // Delete a file
 const deleteFile = async (req, res) => {
-    const { filename } = req.params;
-    const filePath = path.join(__dirname, '../uploads', filename);
+    const { _id } = req.params;
+   // const filePath = path.join(__dirname, '../uploads', filename);
   
     try {
-      const file = await DocumentUpload.findOneAndDelete({ filename });
+      const file = await DocumentUpload.findOneAndDelete({_id});
       if (!file) {
         return res.status(404).json({ message: 'File not found' });
       }
-      await cloudinary.uploader.destroy(filename);
-      res.status(200).json({ message: 'File deleted successfully' });
+      await cloudinary.uploader.destroy(file.filename);
+      res.status(200).json({ message: 'File deleted successfully'});
   
     //   fs.unlink(filePath, (err) => {
     //     if (err) {
@@ -160,7 +160,7 @@ const renameFile = async (req, res) => {
     try {
       const file = await DocumentUpload.findOneAndUpdate(
         { filename },
-        { filename: newFilename, filepath: newPath, document_url: `${req.protocol}://${req.get('host')}/uploads/${newFilename}` },
+        { filename: newFilename},
         { new: true }
       );
   
@@ -168,7 +168,7 @@ const renameFile = async (req, res) => {
         return res.status(404).json({ message: 'File not found' });
       }
 
-      await cloudinary.uploader.rename(filename, newFilename);
+      //await cloudinary.uploader.rename(filename, newFilename);
   
     //   fs.rename(oldPath, newPath, (err) => {
         // if (err) {
@@ -187,6 +187,59 @@ const renameFile = async (req, res) => {
     }
 // });
   };
+
+// const renameFile = async (req, res) => {
+//   const { _id } = req.params;
+//   const { newFilename } = req.body;
+
+//   if (!newFilename) {
+//     return res.status(400).json({ message: 'New filename is required' });
+//   }
+
+//   try {
+//     // Find the file by _id
+//     const file = await DocumentUpload.findById(_id);
+//     if (!file) {
+//       return res.status(404).json({ message: 'File not found in database' });
+//     }
+
+//     const oldPublicId = path.parse(file.filename).name; // Extract public_id without extension
+//     const newPublicId = path.parse(newFilename).name; // Extract new public_id
+
+//     console.log('Original Filename from DB:', file.filename);
+//     console.log('Derived Old Public ID:', oldPublicId);
+//     console.log('New Public ID:', newPublicId);
+
+//     try {
+//       await cloudinary.api.resource(oldPublicId);
+//       console.log('File found on Cloudinary');
+//     } catch (error) {
+//       console.error('Cloudinary Error:', error);
+//       return res.status(404).json({
+//         message: 'File not found on Cloudinary',
+//         error: error.message,
+//       });
+//     }
+
+//     const renamedFile = await cloudinary.uploader.rename(oldPublicId, newPublicId);
+//     console.log('File renamed successfully:', renamedFile);
+
+//     file.filename = newFilename;
+//     file.document_url = renamedFile.secure_url;
+//     await file.save();
+
+//     res.status(200).json({
+//       message: 'File renamed successfully',
+//       data: file,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       message: 'Error renaming file',
+//       error: error.message,
+//     });
+//   }
+// };
+
 
   module.exports = {
     uploadDocuments,
