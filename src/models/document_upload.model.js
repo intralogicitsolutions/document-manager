@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const DocumentUploadSchema = new Schema({
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
     filename: {
         type: String,
         required: true,
@@ -17,14 +21,6 @@ const DocumentUploadSchema = new Schema({
         type: Number,
         required: true,
       },
-      mimetype: {  
-        type: String,
-        required: true,
-    },
-    extension: { 
-        type: String,
-        required: true,
-    },
     document_url: {  
         type: String,
         // required: true,

@@ -31,55 +31,72 @@ const upload = multer({
 
   const uploadDocuments = (req, res) => {
     upload(req, res, async (err) => {
-      if (err) {
-        return res.status(400).json({ message: err.message });
-      }
-      if (!req.files || req.files.length === 0) {
-        return res.status(400).json({ message: 'No files uploaded' });
-      }
-  
-      try {
-       
-        const fileDetails = await Promise.all(req.files.map(async (file) => {
-            const isImage = file.mimetype.startsWith('image/');
-          const result = await cloudinary.uploader.upload(file.path, {
-            resource_type: isImage ? 'image' : 'raw',
-           flags: 'attachment:false'
-          });
-          const fileUrl = file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-          ? `https://docs.google.com/viewer?url=${encodeURIComponent(result.secure_url)}&embedded=true`
-          : result.secure_url;
+        if (err) {
+            return res.status(400).json({ message: err.message });
+        }
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ message: 'No files uploaded' });
+        }
+        console.log(req.body);
+        const { user_id } = req.body;
+        console.log(user_id);
+        if (!user_id) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
 
-          const fileExtension = path.extname(file.originalname).toLowerCase();
-  
-          
-          fs.unlinkSync(file.path);
-  
-          return {
-            filename: file.filename, 
-            filepath: fileUrl,  
-            originalName: file.originalname,
-            size: file.size,
-            mimetype: file.mimetype,
-            extension: fileExtension,
-            document_url: result.secure_url,
-          };
-        }));
-  
+        try {
+            const fileDetails = await Promise.all(req.files.map(async (file) => {
+                const isImage = file.mimetype.startsWith('image/');
+                const result = await cloudinary.uploader.upload(file.path, {
+                    resource_type: isImage ? 'image' : 'raw',
+                    flags: 'attachment:false'
+                });
 
-        const savedFiles = await DocumentUpload.insertMany(fileDetails);
-        res.status(200).json({
-          message: 'Files uploaded successfully',
-          data: savedFiles,
-        });
-      } catch (error) {
-        res.status(500).json({
-          message: 'Error uploading files',
-          error: error.message,
-        });
-      }
+                const fileUrl = file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    ? `https://docs.google.com/viewer?url=${encodeURIComponent(result.secure_url)}&embedded=true`
+                    : result.secure_url;
+
+                fs.unlinkSync(file.path);
+
+                return {
+                    user_id,
+                    filename: file.filename,
+                    filepath: fileUrl,
+                    originalName: file.originalname,
+                    size: file.size,
+                    document_url: result.secure_url,
+                };
+            }));
+
+            const filteredFileDetails = [];
+            for (const file of fileDetails) {
+                const exists = await DocumentUpload.findOne({
+                    user_id: file.user_id,
+                    originalName: file.originalName,
+                    size: file.size
+                });
+                if (!exists) {
+                    filteredFileDetails.push(file);
+                }
+            }
+
+            if (filteredFileDetails.length === 0) {
+                return res.status(400).json({ message: 'No new files to upload, duplicates detected' });
+            }
+
+            const savedFiles = await DocumentUpload.insertMany(filteredFileDetails);
+            res.status(200).json({
+                message: 'Files uploaded successfully',
+                data: savedFiles,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error uploading files',
+                error: error.message,
+            });
+        }
     });
-  };
+};
 
   const getDocument = (req, res) => {
      const { filename } = req.params;
@@ -100,37 +117,41 @@ const upload = multer({
 
 
   // Get list of files
-const getFiles = async (req, res) => {
-    try {
-      const files = await DocumentUpload.find({}, 'filename originalName size document_url createdAt');
-      res.status(200).json({ data: files });
-    } catch (error) {
-      res.status(500).json({
-        message: 'Error fetching files',
-        error: error.message,
-      });
+  const getFiles = async (req, res) => {
+    const { user_id } = req.params;
+    if (!user_id) {
+        return res.status(400).json({ message: 'User ID is required' });
     }
-  };
+    try {
+        const files = await DocumentUpload.find(
+            { user_id },
+            'filename originalName size document_url createdAt user_id'
+        );
 
-  // Delete a file
+        res.status(200).json({ data: files });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error fetching files',
+            error: error.message,
+        });
+    }
+};
+
+
 const deleteFile = async (req, res) => {
-    const { _id } = req.params;
-   // const filePath = path.join(__dirname, '../uploads', filename);
+    const { _id, user_id } = req.params;
+   if (!user_id || !_id) {
+    return res.status(400).json({ message: 'User ID and file ID are required' });
+}
   
     try {
-      const file = await DocumentUpload.findOneAndDelete({_id});
+      const file = await DocumentUpload.findOneAndDelete({_id, user_id });
       if (!file) {
         return res.status(404).json({ message: 'File not found' });
       }
       await cloudinary.uploader.destroy(file.filename);
       res.status(200).json({ message: 'File deleted successfully'});
   
-    //   fs.unlink(filePath, (err) => {
-    //     if (err) {
-    //       return res.status(500).json({ message: 'Error deleting file from disk' });
-    //     }
-    //     res.status(200).json({ message: 'File deleted successfully' });
-    //   });
     } catch (error) {
       res.status(500).json({
         message: 'Error deleting file',
@@ -141,25 +162,18 @@ const deleteFile = async (req, res) => {
 
   // Rename a file
 const renameFile = async (req, res) => {
-    const { filename } = req.params;
+    const { filename,  user_id } = req.params;
     const { newFilename } = req.body;
 
     console.log('Filename:', filename); 
     console.log('New Filename:', newFilename); 
 
-    if (!filename || !newFilename) {
-        return res.status(400).json({ message: 'Filename and newFilename are required' });
+    if (!user_id || !filename || !newFilename) {
+        return res.status(400).json({ message: 'User ID, Filename and newFilename are required' });
     }
-    const oldPath = path.join(__dirname, '../uploads', filename);
-    const newPath = path.join(__dirname, '../uploads', newFilename);
-    // fs.access(oldPath, fs.constants.F_OK, async (err) => {
-        // if (err) {
-        //     return res.status(404).json({ message: 'File does not exist' });
-        // }
-  
     try {
       const file = await DocumentUpload.findOneAndUpdate(
-        { filename },
+        { filename, user_id },
         { filename: newFilename, originalName: newFilename},
         { new: true }
       );
@@ -168,77 +182,18 @@ const renameFile = async (req, res) => {
         return res.status(404).json({ message: 'File not found' });
       }
 
-      //await cloudinary.uploader.rename(filename, newFilename);
-  
-    //   fs.rename(oldPath, newPath, (err) => {
-        // if (err) {
-        //   return res.status(500).json({ message: 'Error renaming file on disk' });
-        // }
         res.status(200).json({
           message: 'File renamed successfully',
           data: file,
         });
-     // });
     } catch (error) {
       res.status(500).json({
         message: 'Error renaming file',
         error: error.message,
       });
     }
-// });
+
   };
-
-// const renameFile = async (req, res) => {
-//   const { _id } = req.params;
-//   const { newFilename } = req.body;
-
-//   if (!newFilename) {
-//     return res.status(400).json({ message: 'New filename is required' });
-//   }
-
-//   try {
-//     // Find the file by _id
-//     const file = await DocumentUpload.findById(_id);
-//     if (!file) {
-//       return res.status(404).json({ message: 'File not found in database' });
-//     }
-
-//     const oldPublicId = path.parse(file.filename).name; // Extract public_id without extension
-//     const newPublicId = path.parse(newFilename).name; // Extract new public_id
-
-//     console.log('Original Filename from DB:', file.filename);
-//     console.log('Derived Old Public ID:', oldPublicId);
-//     console.log('New Public ID:', newPublicId);
-
-//     try {
-//       await cloudinary.api.resource(oldPublicId);
-//       console.log('File found on Cloudinary');
-//     } catch (error) {
-//       console.error('Cloudinary Error:', error);
-//       return res.status(404).json({
-//         message: 'File not found on Cloudinary',
-//         error: error.message,
-//       });
-//     }
-
-//     const renamedFile = await cloudinary.uploader.rename(oldPublicId, newPublicId);
-//     console.log('File renamed successfully:', renamedFile);
-
-//     file.filename = newFilename;
-//     file.document_url = renamedFile.secure_url;
-//     await file.save();
-
-//     res.status(200).json({
-//       message: 'File renamed successfully',
-//       data: file,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: 'Error renaming file',
-//       error: error.message,
-//     });
-//   }
-// };
 
 
   module.exports = {
