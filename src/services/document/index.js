@@ -34,9 +34,7 @@ const uploadDocument = async (req, userData, res) => {
 
                     return {
                         user_id: userData._id,
-                        // filename: file.filename,
-                        // filepath: fileUrl,
-                        originalName: file.originalname,
+                        originalName: `${userData._id.toString()}_${file.originalname}` ,
                         size: file.size,
                         document_url: fileUrl,
                     };
@@ -47,30 +45,48 @@ const uploadDocument = async (req, userData, res) => {
             }));
 
             console.log('document list', documentDataList)
-
-            const documents = await DocumentSchema.insertMany(documentDataList);
-
+           try {
+            const documents = await DocumentSchema.insertMany(documentDataList, { ordered: false });
+            
             logger.info(`Documents uploaded successfully`);
-            res.status(200).json({
-                message: 'Files uploaded successfully',
-                data: documents,
-            });
+            return responseData.success(res, documents, messageConstants.DOCUMENT_UPLOADED);
+            // res.status(200).json({
+            //     message: 'Files uploaded successfully',
+            //     data: documents,
+            // });
+           } catch (err) {
+            const uploadedDocuments = err.results.filter(e => e.originalName);
+            const uploadedDocumentsName = uploadedDocuments.map(e => e.originalName);
+                const notUploadedDocuments = documentDataList.filter(e => !uploadedDocumentsName.includes(e.originalName)).map(e => {return e.originalName.replace(`${userData._id.toString()}_`,'')});
+                err.notUploadedDocuments = notUploadedDocuments || [];
+                err.docLength = documentDataList?.length || 0;
+                err.uploadDocuments = uploadedDocuments || [];
+                throw err ;
+           }
+            
             //    return responseData.success(documents, documentDataList, messageConstants.DOCUMENT_UPLOADED);
         } catch (err) {
+            console.log(err.results);
             if (err.code === 11000) {
-                if (err.keyValue) {
-                    const keys = Object.keys(err.keyValue);
-                    logger.error(`${keys.join(', ')} already uploaded`);
-                    return responseData.fail(res, `${keys.join(', ')} already uploaded`, 403);
+                
+                if (err?.notUploadedDocuments && err?.notUploadedDocuments?.length) {
+                    //const keys = Object.keys(err.keyValue);
+                    logger.error(`${err?.notUploadedDocuments.join(', ')} already uploaded`);
+                    if(err?.docLength == err?.notUploadedDocuments.length){
+                        return responseData.fail(res, `${err?.notUploadedDocuments.join(', ')} already uploaded`, 403);
+                    }else{
+                        return responseData.success(res,err.uploadDocuments, `${err?.notUploadedDocuments.join(', ')} already uploaded`);
+                    }
+                   
                 } else {
                     logger.error('err.keyValue is undefined or null');
+                    console.error('err.keyValue is undefined or null', err.results);
                     return responseData.fail(res, 'An unknown error occurred', 400);
                 }
             } else {
                 logger.error(`Error during document upload: ${err.code}`);
                 return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR, 500);
             }
-
         }
         // });
     });
@@ -120,14 +136,15 @@ const deleteDocument = async (req, userData, res) => {
 
 const renameDocument = async (req, userData, res) => {
     return new Promise(async () => {
+        const { _id } = req.params;
+        const { newFilename } = req.body;
+        const user_id = userData._id;
         try {
-            const { _id } = req.params;
-            const { newFilename } = req.body;
-            const user_id = userData._id;
-
+            console.log('user id ',user_id);
+            console.log('new file name ',newFilename);
             const document = await DocumentSchema.findOneAndUpdate(
                 { _id, user_id },
-                { originalName: newFilename },
+                { originalName: `${user_id.toString()}_${newFilename }`},
                 { new: true }
             );
             if (!document) {
@@ -137,8 +154,14 @@ const renameDocument = async (req, userData, res) => {
             return responseData.success(res, document, messageConstants.FILE_RENAMED_SUCCESSFULLY)
 
         } catch (error) {
-            logger.error(`Error fetching files: ${error.message}`);
-            return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
+            if (error.code === 11000) {
+                logger.error(`Error fetching files: ${error.message}`);
+                return responseData.fail(res, `The file with name '${newFilename}' already exists`, 403);
+            }else{
+                logger.error(`Error fetching files: ${error.message}`);
+                return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
+            }
+           
         }
     });
 }
