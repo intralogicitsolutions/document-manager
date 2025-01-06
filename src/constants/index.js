@@ -1,4 +1,12 @@
+const urlConstants = require('./url');
+const responseData = require('./response');
+const { mailSubjectConstants, mailTemplateConstants } = require('./mail');
+const messageConstants  = require('./messages');
+
 module.exports = {
-    StatusCodes: require('./status_codes'),
-    ResponseMessage: require('./response_message'),
-};
+    urlConstants,
+    responseData,
+    mailSubjectConstants,
+    mailTemplateConstants,
+    messageConstants,
+}

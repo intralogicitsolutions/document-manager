@@ -1,0 +1,320 @@
+error: Jan-01-2025 19:24:38: 	Validation error: firstname is required, lastname is required, email is required
+error: Jan-02-2025 11:49:08: 	email_id already exists
+info: Jan-02-2025 11:49:20: 	User Ishita undefined created successfully with undefined
+error: Jan-02-2025 13:44:19: 	User not found! secretOrPrivateKey must have a value
+info: Jan-02-2025 13:46:26: 	Token generated successfully
+info: Jan-02-2025 13:46:26: 	User Ishita poshiya loggedin successfully
+info: Jan-02-2025 14:10:50: 	User Ishita poshiya created successfully with undefined
+info: Jan-02-2025 14:11:15: 	Token generated successfully
+info: Jan-02-2025 14:11:15: 	User Ishita poshiya loggedin successfully
+error: Jan-02-2025 14:13:24: 	Internal server error users validation failed: _id: Cast to ObjectId failed for value "c226fe41624c4fa78c86d3a45d4c88e9" (type string) at path "_id" because of "BSONError"
+info: Jan-02-2025 14:19:02: 	User Ishita poshiya created successfully with undefined
+info: Jan-02-2025 14:19:49: 	Token generated successfully
+info: Jan-02-2025 14:19:49: 	User Ishita poshiya loggedin successfully
+info: Jan-02-2025 14:25:50: 	User Ishita poshiya created successfully with undefined
+info: Jan-02-2025 15:18:04: 	User Ishita poshiya created successfully with undefined
+error: Jan-02-2025 15:19:09: 	Validation error: email is required
+info: Jan-02-2025 15:19:33: 	Token generated successfully
+info: Jan-02-2025 15:27:57: 	Token validated successfully
+info: Jan-02-2025 16:13:21: 	Token validated successfully
+info: Jan-02-2025 16:46:27: 	Token generated successfully
+info: Jan-02-2025 16:46:27: 	User Ishita poshiya loggedin successfully
+info: Jan-02-2025 17:06:24: 	Token validated successfully
+info: Jan-02-2025 17:06:24: 	User Ishita poshiya fetched successfully
+info: Jan-02-2025 17:06:24: 	Password forgot successfully for ishitaposhiya1811@gmail.com
+error: Jan-02-2025 17:07:04: 	Email or Password is incorrect
+info: Jan-02-2025 17:07:08: 	Token generated successfully
+info: Jan-02-2025 17:07:08: 	User Ishita poshiya loggedin successfully
+info: Jan-02-2025 17:28:06: 	Token validated successfully
+error: Jan-02-2025 17:28:06: 	Token expired, Please generate new token!
+info: Jan-02-2025 17:28:30: 	Token validated successfully
+info: Jan-02-2025 17:28:30: 	User Ishita poshiya fetched successfully
+info: Jan-02-2025 17:28:30: 	Password reset successfully for ishitaposhiya1811@gmail.com
+error: Jan-02-2025 17:28:38: 	Email or Password is incorrect
+info: Jan-02-2025 17:28:47: 	Token generated successfully
+info: Jan-02-2025 17:28:47: 	User Ishita poshiya loggedin successfully
+info: Jan-02-2025 19:04:15: 	Token validated successfully
+info: Jan-02-2025 19:04:15: 	User Ishita poshiya fetched successfully
+info: Jan-02-2025 19:05:00: 	Token validated successfully
+info: Jan-02-2025 19:05:00: 	User Ishita poshiya fetched successfully
+info: Jan-02-2025 19:10:20: 	Token validated successfully
+info: Jan-02-2025 19:10:20: 	User Ishita poshiya fetched successfully
+error: Jan-02-2025 19:10:20: 	upload Document API failed Cannot read properties of undefined (reading 'transfer-encoding')
+info: Jan-03-2025 10:15:30: 	Token validated successfully
+info: Jan-03-2025 10:15:30: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:21:20: 	Token validated successfully
+info: Jan-03-2025 10:21:20: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 10:21:20: 	upload Document API failed Cannot read properties of undefined (reading 'transfer-encoding')
+info: Jan-03-2025 10:24:24: 	Token validated successfully
+info: Jan-03-2025 10:24:25: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 10:24:25: 	upload Document API failed Cannot read properties of undefined (reading 'transfer-encoding')
+info: Jan-03-2025 10:25:25: 	Token validated successfully
+info: Jan-03-2025 10:25:25: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 10:25:25: 	upload Document API failed Cannot read properties of undefined (reading 'transfer-encoding')
+info: Jan-03-2025 10:25:27: 	Token validated successfully
+info: Jan-03-2025 10:25:27: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 10:25:27: 	upload Document API failed Cannot read properties of undefined (reading 'transfer-encoding')
+info: Jan-03-2025 10:29:36: 	Token validated successfully
+info: Jan-03-2025 10:29:36: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:31:47: 	Token validated successfully
+info: Jan-03-2025 10:31:47: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:47:32: 	Token validated successfully
+info: Jan-03-2025 10:50:55: 	Token validated successfully
+info: Jan-03-2025 10:51:05: 	Token validated successfully
+info: Jan-03-2025 10:51:05: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:51:50: 	Token validated successfully
+info: Jan-03-2025 10:51:50: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:51:50: 	Response from uploadDocument API
+info: Jan-03-2025 10:52:14: 	Token validated successfully
+info: Jan-03-2025 10:52:14: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:52:31: 	Token generated successfully
+info: Jan-03-2025 10:52:31: 	User Ishita poshiya loggedin successfully
+info: Jan-03-2025 10:52:53: 	Token validated successfully
+info: Jan-03-2025 10:52:53: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 10:53:34: 	Token validated successfully
+info: Jan-03-2025 10:53:34: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 11:27:52: 	Token validated successfully
+info: Jan-03-2025 11:27:52: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 11:27:52: 	Response from uploadDocument API
+info: Jan-03-2025 11:30:15: 	Token validated successfully
+info: Jan-03-2025 11:30:15: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 11:30:15: 	Response from uploadDocument API
+info: Jan-03-2025 11:33:22: 	Token validated successfully
+info: Jan-03-2025 11:33:22: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 11:33:22: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735884202436-368082037-abc.txt'
+info: Jan-03-2025 11:40:20: 	Token validated successfully
+info: Jan-03-2025 11:40:20: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 11:40:20: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735884620177-50617348-abc.txt'
+info: Jan-03-2025 11:49:29: 	Token validated successfully
+info: Jan-03-2025 11:49:29: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 11:49:29: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735885169398-945913432-abc.txt'
+info: Jan-03-2025 11:49:47: 	Token validated successfully
+info: Jan-03-2025 11:49:47: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 11:49:47: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735885187372-644559129-abc.txt'
+info: Jan-03-2025 11:57:52: 	Token validated successfully
+info: Jan-03-2025 11:57:52: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 11:57:52: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735885672260-427326978-abc.txt'
+info: Jan-03-2025 12:03:39: 	Token validated successfully
+info: Jan-03-2025 12:03:39: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:03:39: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735886019366-336838737-abc.txt'
+info: Jan-03-2025 12:05:37: 	Token validated successfully
+info: Jan-03-2025 12:05:37: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 12:06:23: 	Token validated successfully
+info: Jan-03-2025 12:06:23: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 12:06:34: 	Token validated successfully
+info: Jan-03-2025 12:06:35: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:06:35: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735886195025-890406123-abc.txt'
+info: Jan-03-2025 12:33:27: 	Token validated successfully
+info: Jan-03-2025 12:33:27: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:33:27: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735887807829-79106790-abc.txt'
+info: Jan-03-2025 12:45:47: 	Token validated successfully
+info: Jan-03-2025 12:45:47: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:45:47: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888547601-474783702-slide5.jfif'
+info: Jan-03-2025 12:46:16: 	Token validated successfully
+info: Jan-03-2025 12:46:16: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:46:16: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888576437-788340556-slide5.jfif'
+info: Jan-03-2025 12:47:10: 	Token validated successfully
+info: Jan-03-2025 12:47:10: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:47:10: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888630897-933229666-slide5.jfif'
+info: Jan-03-2025 12:47:29: 	Token validated successfully
+info: Jan-03-2025 12:47:29: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:47:29: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888649527-130338859-slide5.jfif'
+info: Jan-03-2025 12:50:54: 	Token validated successfully
+info: Jan-03-2025 12:50:54: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:50:54: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888854772-239946352-slide5.jfif'
+info: Jan-03-2025 12:52:41: 	Token validated successfully
+info: Jan-03-2025 12:52:41: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:52:41: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735888961686-798987335-slide5.jfif'
+info: Jan-03-2025 12:53:55: 	Token validated successfully
+info: Jan-03-2025 12:53:55: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 12:53:55: 	Response from uploadDocument API
+info: Jan-03-2025 12:54:11: 	Token validated successfully
+info: Jan-03-2025 12:54:11: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 12:54:11: 	File upload failed: ENOENT: no such file or directory, open 'D:\Flutter-Project\document-manager-backend\src\services\uploads\1735889051731-265520179-slide5.jfif'
+info: Jan-03-2025 13:41:36: 	Token validated successfully
+info: Jan-03-2025 13:41:36: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 13:42:12: 	Token validated successfully
+info: Jan-03-2025 13:42:12: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 13:42:13: 	Error during document upload: documentupload validation failed: user_id: Path `user_id` is required.
+info: Jan-03-2025 13:44:06: 	Token validated successfully
+info: Jan-03-2025 13:44:06: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 13:44:07: 	Error during document upload: documentupload validation failed: user_id: Path `user_id` is required.
+info: Jan-03-2025 13:44:58: 	Token validated successfully
+info: Jan-03-2025 13:44:58: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 13:45:00: 	Error during document upload: userId is not defined
+info: Jan-03-2025 13:45:53: 	Token validated successfully
+info: Jan-03-2025 13:45:53: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 13:45:55: 	Error during document upload: userId is not defined
+info: Jan-03-2025 13:46:20: 	Token validated successfully
+info: Jan-03-2025 13:46:20: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 13:46:21: 	Error during document upload: userId is not defined
+info: Jan-03-2025 13:46:50: 	Token validated successfully
+info: Jan-03-2025 13:46:50: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 13:46:51: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 13:48:14: 	Token validated successfully
+info: Jan-03-2025 13:48:14: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 13:48:15: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:25:02: 	Token validated successfully
+info: Jan-03-2025 14:25:02: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:25:04: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:36:33: 	Token validated successfully
+info: Jan-03-2025 14:36:33: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:36:35: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 14:36:35: 	Error during document upload: res.status is not a function
+info: Jan-03-2025 14:37:23: 	Token validated successfully
+info: Jan-03-2025 14:37:23: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:37:25: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 14:37:25: 	Error during document upload: res.status is not a function
+info: Jan-03-2025 14:49:42: 	Token validated successfully
+info: Jan-03-2025 14:49:42: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 14:49:42: 	Error during document upload: documentupload validation failed: size: Path `size` is required., originalName: Path `originalName` is required., filepath: Path `filepath` is required., filename: Path `filename` is required., user_id: Path `user_id` is required.
+info: Jan-03-2025 14:50:34: 	Token validated successfully
+info: Jan-03-2025 14:50:34: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 14:50:36: 	Error during document upload: documentupload validation failed: filepath: Path `filepath` is required., filename: Path `filename` is required.
+info: Jan-03-2025 14:51:12: 	Token validated successfully
+info: Jan-03-2025 14:51:12: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:51:14: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:51:49: 	Token validated successfully
+info: Jan-03-2025 14:51:49: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:51:51: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:53:52: 	Token validated successfully
+info: Jan-03-2025 14:53:52: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:53:54: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:55:40: 	Token validated successfully
+info: Jan-03-2025 14:55:40: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 14:55:42: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 14:56:03: 	Token validated successfully
+info: Jan-03-2025 14:56:03: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 14:56:05: 	Error during document upload: E11000 duplicate key error collection: document-manager.documentuploads index: originalName_1 dup key: { originalName: "Ishita_Poshiya Work Portfolio .pdf" }
+info: Jan-03-2025 14:58:12: 	Token validated successfully
+info: Jan-03-2025 14:58:12: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 14:58:14: 	Error during document upload: MongoBulkWriteError: E11000 duplicate key error collection: document-manager.documentuploads index: originalName_1 dup key: { originalName: "Ishita_Poshiya Work Portfolio .pdf" }
+info: Jan-03-2025 14:58:39: 	Token validated successfully
+info: Jan-03-2025 14:58:39: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 14:58:41: 	Error during document upload: 11000
+info: Jan-03-2025 15:00:10: 	Token validated successfully
+info: Jan-03-2025 15:00:10: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:02:18: 	Token validated successfully
+info: Jan-03-2025 15:02:18: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:02:33: 	Token validated successfully
+info: Jan-03-2025 15:02:33: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:02:56: 	Token validated successfully
+info: Jan-03-2025 15:02:56: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:03:56: 	Token validated successfully
+info: Jan-03-2025 15:03:56: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:05:20: 	Token validated successfully
+info: Jan-03-2025 15:05:21: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 15:05:22: 	err.keyValue is undefined or null
+info: Jan-03-2025 15:05:56: 	Token validated successfully
+info: Jan-03-2025 15:05:56: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:07:14: 	Token validated successfully
+info: Jan-03-2025 15:07:14: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 15:07:17: 	err.keyValue is undefined or null
+info: Jan-03-2025 15:09:45: 	Token validated successfully
+info: Jan-03-2025 15:09:46: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 15:09:47: 	err.keyValue is undefined or null
+info: Jan-03-2025 15:15:45: 	Token validated successfully
+info: Jan-03-2025 15:15:45: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 15:15:47: 	err.keyValue is undefined or null
+info: Jan-03-2025 15:15:56: 	Token validated successfully
+info: Jan-03-2025 15:15:56: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:15:57: 	Documents uploaded successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 15:52:24: 	Token validated successfully
+info: Jan-03-2025 15:52:24: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:52:24: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 15:52:24: 	Error fetching files: files is not defined
+info: Jan-03-2025 15:54:24: 	Token validated successfully
+info: Jan-03-2025 15:54:24: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:54:24: 	Fetching files for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 15:54:24: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 15:54:24: 	Error fetching files: files is not defined
+info: Jan-03-2025 15:55:17: 	Token validated successfully
+info: Jan-03-2025 15:55:17: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:55:17: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 15:55:17: 	Error fetching files: files is not defined
+info: Jan-03-2025 15:58:28: 	Token validated successfully
+info: Jan-03-2025 15:58:28: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:58:28: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 15:58:28: 	Error fetching files: files is not defined
+info: Jan-03-2025 15:59:11: 	Token validated successfully
+info: Jan-03-2025 15:59:11: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:59:11: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+error: Jan-03-2025 15:59:36: 	Token expired, Please generate new token!
+info: Jan-03-2025 15:59:47: 	Token validated successfully
+info: Jan-03-2025 15:59:47: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 15:59:47: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 16:07:32: 	Token validated successfully
+info: Jan-03-2025 16:07:32: 	User Ishita poshiya fetched successfully
+warn: Jan-03-2025 16:07:32: 	No files found for user ID: undefined
+info: Jan-03-2025 16:07:43: 	Token validated successfully
+info: Jan-03-2025 16:07:43: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 16:07:43: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 16:26:19: 	Token validated successfully
+info: Jan-03-2025 16:26:19: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 16:26:19: 	Error fetching files: DocumentUpload is not defined
+info: Jan-03-2025 16:27:27: 	Token validated successfully
+info: Jan-03-2025 16:27:27: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 16:53:54: 	Token validated successfully
+info: Jan-03-2025 16:53:54: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 16:53:54: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 16:56:07: 	Token validated successfully
+info: Jan-03-2025 16:56:07: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 17:09:11: 	Token validated successfully
+info: Jan-03-2025 17:09:11: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 17:09:11: 	Files fetched successfully for user ID: 677660d4153e8f4651b752da
+info: Jan-03-2025 18:58:20: 	Token validated successfully
+info: Jan-03-2025 18:58:20: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 18:58:20: 	upload Document API failed documentService.feedback is not a function
+info: Jan-03-2025 19:00:02: 	Token validated successfully
+info: Jan-03-2025 19:00:02: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 19:00:02: 	Failed to submit feedback. feedback validation failed: user_id: Path `user_id` is required.
+info: Jan-03-2025 19:03:54: 	Token validated successfully
+info: Jan-03-2025 19:03:54: 	User Ishita poshiya fetched successfully
+error: Jan-03-2025 19:03:54: 	Failed to submit feedback. feedback validation failed: user_id: Path `user_id` is required.
+info: Jan-03-2025 19:08:06: 	Token validated successfully
+info: Jan-03-2025 19:08:06: 	User Ishita poshiya fetched successfully
+info: Jan-03-2025 19:08:06: 	Feedback submitted successfully.
+info: Jan-06-2025 10:43:26: 	Token generated successfully
+info: Jan-06-2025 10:43:26: 	User Ishita poshiya loggedin successfully
+info: Jan-06-2025 10:48:14: 	Token validated successfully
+info: Jan-06-2025 10:48:14: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:48:14: 	User not found!
+info: Jan-06-2025 10:51:46: 	Token validated successfully
+info: Jan-06-2025 10:51:46: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:51:46: 	User not found!
+info: Jan-06-2025 10:53:03: 	Token validated successfully
+info: Jan-06-2025 10:53:03: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:53:03: 	User not found!
+info: Jan-06-2025 10:53:21: 	Token validated successfully
+info: Jan-06-2025 10:53:21: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:53:21: 	User not found!
+info: Jan-06-2025 10:55:47: 	Token validated successfully
+info: Jan-06-2025 10:55:47: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:55:47: 	User not found!
+info: Jan-06-2025 10:56:37: 	Token validated successfully
+info: Jan-06-2025 10:56:37: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:56:37: 	User not found!
+info: Jan-06-2025 10:56:58: 	Token validated successfully
+error: Jan-06-2025 10:56:58: 	Validation error: first_name is required
+info: Jan-06-2025 10:57:06: 	Token validated successfully
+info: Jan-06-2025 10:57:06: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:57:06: 	User not found!
+info: Jan-06-2025 10:58:10: 	Token validated successfully
+info: Jan-06-2025 10:58:10: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 10:58:10: 	User not found!
+info: Jan-06-2025 11:13:11: 	Token validated successfully
+info: Jan-06-2025 11:13:11: 	User Ishita poshiya fetched successfully
+error: Jan-06-2025 11:13:11: 	Error deleting account: email_id is not defined
+info: Jan-06-2025 11:13:52: 	Token validated successfully
+info: Jan-06-2025 11:13:52: 	User Ishita poshiya fetched successfully
+error: Jan-06-2025 11:13:52: 	Error deleting account: email_id is not defined
+info: Jan-06-2025 11:14:23: 	Token validated successfully
+info: Jan-06-2025 11:14:23: 	User Ishita poshiya fetched successfully
+warn: Jan-06-2025 11:14:23: 	User not found!
+info: Jan-06-2025 11:16:23: 	Token validated successfully
+info: Jan-06-2025 11:16:23: 	User Ishita poshiya fetched successfully
+error: Jan-06-2025 11:16:23: 	Error deleting account: email_id is not defined
+info: Jan-06-2025 11:16:46: 	Token validated successfully
+info: Jan-06-2025 11:16:46: 	User Ishita poshiya fetched successfully
+info: Jan-06-2025 11:16:46: 	Account for email Ishita marked as deleted. Reason: undefined
+error: Jan-06-2025 11:22:27: 	Email or Password is incorrect

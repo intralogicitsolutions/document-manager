@@ -4,17 +4,22 @@ const { createServer } = require('http');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require("body-parser");
+const cloudinary = require('cloudinary').v2;
 
 
-const routers = require("./routes");
+const routes = require("./routes");
 const { dbConnectionPromise } = require("./configs/db");
 const { Logger } = require('./helper');
 const { ResponseMessage } = require('./constants');
 
 const app = express();
+
+// set view engine
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json({ limit: "1024mb" }));
 app.use(bodyParser.urlencoded({ limit: "1024mb", extended: true }));
-
+app.use('/api', routes);
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/files', express.static(path.join(__dirname, '../files')));
 
@@ -25,7 +30,13 @@ app.use((err, req, res, next) => {
     res.status(500).send(ResponseMessage.TRY_AGAIN_LATER);
 });
 
-routers(app);
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+});
+
+// routers(app);
 
 const filesDir = path.join(__dirname, '../files');
 if (!fs.existsSync(filesDir)) {
