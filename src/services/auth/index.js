@@ -159,7 +159,6 @@ const deleteAccount = async (body, userData, res) => {
 
 const editUser = async (body, file, userData, res) => {
     return new Promise(async () => {
-        body['password'] = cryptoGraphy.encrypt(body.password);
         try {
             if (file) {
                 const result = await cloudinary.uploader.upload(file.path, {
