@@ -50,10 +50,6 @@ const uploadDocument = async (req, userData, res) => {
             
             logger.info(`Documents uploaded successfully`);
             return responseData.success(res, documents, messageConstants.DOCUMENT_UPLOADED);
-            // res.status(200).json({
-            //     message: 'Files uploaded successfully',
-            //     data: documents,
-            // });
            } catch (err) {
             const uploadedDocuments = err.results.filter(e => e.originalName);
             const uploadedDocumentsName = uploadedDocuments.map(e => e.originalName);
@@ -64,7 +60,6 @@ const uploadDocument = async (req, userData, res) => {
                 throw err ;
            }
             
-            //    return responseData.success(documents, documentDataList, messageConstants.DOCUMENT_UPLOADED);
         } catch (err) {
             console.log(err.results);
             if (err.code === 11000) {

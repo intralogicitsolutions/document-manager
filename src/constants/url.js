@@ -11,5 +11,6 @@ const urlConstants = {
     GET_DOCUMENT: '/get-document',
     FEEDBACK: '/feedback',
     DELETE_ACCOUNT: '/delete-account',
+    EDIT_USER: '/edit-user',
 }
 module.exports = urlConstants;

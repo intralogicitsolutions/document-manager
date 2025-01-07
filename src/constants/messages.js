@@ -28,6 +28,7 @@ const messageConstants = {
     FEEDBACK_SUBMISSION_FAILED: 'Failed to submit feedback.',
     FEEDBACK_ALREADY_SUBMITTED: 'You have already submitted feedback.',
     ACCOUNT_DELETED_SUCCESSFULLY: 'Account deleted successfully.',
+    UPDATE_USER: 'User updated successfully',
 
 }
 

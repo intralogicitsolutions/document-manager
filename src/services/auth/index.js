@@ -2,9 +2,18 @@ const UserSchema = require('../../models/user');
 const { responseData, mailSubjectConstants, mailTemplateConstants, messageConstants } = require('../../constants');
 const { jsonWebToken, cryptoGraphy } = require('../../middlewares');
 const { logger, mail } = require('../../utils');
+const { response } = require('express');
+const cloudinary = require('cloudinary').v2;
 
-const signUp = async (body, res) => {
+const signUp = async (body, file, res) => {
     return new Promise(async () => {
+
+        if (file) {
+            const result = await cloudinary.uploader.upload(file.path, {
+                resource_type: 'auto', 
+            });
+            body.image_path = result.secure_url;
+        }
         body['password'] = cryptoGraphy.encrypt(body.password);
        
         const userSchema = new UserSchema(body);
@@ -148,6 +157,31 @@ const deleteAccount = async (body, userData, res) => {
     })
 }
 
+const editUser = async (body, file, userData, res) => {
+    return new Promise(async () => {
+        body['password'] = cryptoGraphy.encrypt(body.password);
+        try {
+            if (file) {
+                const result = await cloudinary.uploader.upload(file.path, {
+                    resource_type: 'auto', 
+                });
+                body.image_path = result.secure_url;
+            }
+           await UserSchema.findByIdAndUpdate(
+                { _id: userData._id },
+                body,
+                { new: true}
+            ).then(async () => {
+                logger.info(`${messageConstants.UPDATE_USER}`);
+               return responseData.success(res, body, messageConstants.UPDATE_USER);
+            });
+        } catch (err) {
+            logger.error(messageConstants.USER_NOT_FOUND);
+            return responseData.fail(res, messageConstants.USER_NOT_FOUND, 404)
+        }
+    });
+}
+
 
 const createJsonWebTokenForUser = async (user) => {
     user['token'] = await jsonWebToken.createToken(user['_id'])
@@ -174,4 +208,5 @@ module.exports = {
     changePassword,
     resetPassword,
     deleteAccount,
+    editUser,
 }

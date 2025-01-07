@@ -30,12 +30,6 @@ const UsersSchema = new Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
     },
-    otp: {
-        type: Number,
-    },
-    otp_expires: {
-        type: Date,
-    },
     token: {
         type: String
     },

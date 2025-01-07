@@ -5,7 +5,7 @@ const { messageConstants } = require('../../constants');
 
 const signUp = async (req, res) => {
     try {
-        const response = await authService.signUp(req.body, res);
+        const response = await authService.signUp(req.body, req.file, res);
         logger.info(`${messageConstants.RESPONSE_FROM} signup API`, JSON.stringify(response));
         res.send(response);
     } catch (err) {
@@ -74,6 +74,18 @@ const deleteAccount = async (req, res) => {
     }
 }
 
+const editUser = async (req, res) => {
+    try {
+        const userData = await getUserData(req, res);
+        const response = await authService.editUser(req.body, req.file, userData, res);
+        logger.info(`${messageConstants.RESPONSE_FROM} deleteAccount API`, JSON.stringify(response));
+        res.send(response);
+    } catch (err) {
+        logger.error(`Reset Password ${messageConstants.API_FAILED}`, err);
+        res.send(err);
+    }
+}
+
 module.exports = {
     signUp,
     signIn,
@@ -81,4 +93,5 @@ module.exports = {
     changePassword,
     resetPassword,
     deleteAccount,
+    editUser,
 }

@@ -48,6 +48,16 @@ const deleteAccountValidation = (req, res, next) => {
     validateRequest(req, res, schema, next)
 }
 
+const editUserValidation = (req, res, next) => {
+    const schema = Joi.object({
+        first_name: Joi.string().optional(),
+        last_name: Joi.string().optional(),
+        email_id: Joi.string().email().optional(),
+        password: Joi.string().optional(),
+    })
+    validateRequest(req, res, schema, next)
+}
+
 
 module.exports = {
     signUpValidation,
@@ -56,4 +66,5 @@ module.exports = {
     changePasswordValidation,
     resetPasswordValidation,
     deleteAccountValidation,
+    editUserValidation,
 }
