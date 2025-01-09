@@ -18,7 +18,8 @@ const sendMailToUser = (template, receiver, subject, res, content) => {
                 to: receiver,
                 subject: subject,
                 html: data
-            }
+            };
+
 
             smtpProtocol.sendMail(mailoption, function (err, response) {
                 if (err) {

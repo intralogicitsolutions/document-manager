@@ -14,6 +14,9 @@ const { ResponseMessage } = require('./constants');
 
 const app = express();
 
+// set views file
+app.set('views', path.join(__dirname, 'public/mailTemplate'));
+
 // set view engine
 app.set('view engine', 'ejs');
 

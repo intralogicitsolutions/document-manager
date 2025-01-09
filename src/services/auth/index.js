@@ -161,13 +161,13 @@ const editUser = async (body, file, userData, res) => {
     return new Promise(async () => {
         try {
             if (file) {
-                const result = await cloudinary.uploader.upload(file.path, {
+                const result = await cloudinary.uploader.upload(file?.path, {
                     resource_type: 'auto', 
                 });
-                body.image_path = result.secure_url;
+                body.image_path = result?.secure_url;
             }
            await UserSchema.findByIdAndUpdate(
-                { _id: userData._id },
+                { _id: userData?._id },
                 body,
                 { new: true}
             ).then(async () => {
@@ -175,8 +175,12 @@ const editUser = async (body, file, userData, res) => {
                return responseData.success(res, body, messageConstants.UPDATE_USER);
             });
         } catch (err) {
-            logger.error(messageConstants.USER_NOT_FOUND);
-            return responseData.fail(res, messageConstants.USER_NOT_FOUND, 404)
+            if(err.code === 11000){
+                logger.error(`${Object.keys(err.keyValue)} already exists`);
+                return responseData.fail(res, `This emailId '${body.email_id}' already exists `, 403);
+            }
+            logger.error(messageConstants.INTERNAL_SERVER_ERROR, err);
+                return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
         }
     });
 }
@@ -190,13 +194,20 @@ const createJsonWebTokenForUser = async (user) => {
 }
 
 const forgotPasswordLink = async (res, user) => {
-    const link = `${process.env.BASE_URL}/password-reset/${user._id}/${user.token}`;
+    const link = `${process.env.BASE_URL}/change-password/${user._id}/${user.token}`;
     const mailContent = {
         first_name: user.first_name,
         last_name: user.last_name,
         link: link
     }
-   // await mail.sendMailToUser(mailTemplateConstants.FORGOT_PASS_TEMPLATE, user.email, mailSubjectConstants.FORGOT_PASS_SUBJECT, res, mailContent);
+    console.log('link ', link);
+    console.log('User email:', user.email_id); 
+
+    if (!user.email_id) {
+        logger.error("User email is missing");
+        return responseData.error(res, {}, "Email address is missing for the user.");
+    }
+   await mail.sendMailToUser(mailTemplateConstants.FORGOT_PASS_TEMPLATE, user.email_id, mailSubjectConstants.FORGOT_PASS_SUBJECT, res, mailContent);
     return responseData.success(res, {}, messageConstants.EMAIL_SENT_FORGOT_PASSWORD);
 }
 
