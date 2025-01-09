@@ -29,6 +29,7 @@ const messageConstants = {
     FEEDBACK_ALREADY_SUBMITTED: 'You have already submitted feedback.',
     ACCOUNT_DELETED_SUCCESSFULLY: 'Account deleted successfully.',
     UPDATE_USER: 'User updated successfully',
+    LOGGEDOUT_SUCCESSFULLY: 'User logged out successfully',
 
 }
 

@@ -69,7 +69,7 @@ const deleteAccount = async (req, res) => {
         logger.info(`${messageConstants.RESPONSE_FROM} deleteAccount API`, JSON.stringify(response));
         res.send(response);
     } catch (err) {
-        logger.error(`Reset Password ${messageConstants.API_FAILED}`, err);
+        logger.error(`Delete Account ${messageConstants.API_FAILED}`, err);
         res.send(err);
     }
 }
@@ -78,10 +78,22 @@ const editUser = async (req, res) => {
     try {
         const userData = await getUserData(req, res);
         const response = await authService.editUser(req.body, req.file, userData, res);
-        logger.info(`${messageConstants.RESPONSE_FROM} deleteAccount API`, JSON.stringify(response));
+        logger.info(`${messageConstants.RESPONSE_FROM} editUser API`, JSON.stringify(response));
         res.send(response);
     } catch (err) {
-        logger.error(`Reset Password ${messageConstants.API_FAILED}`, err);
+        logger.error(`Edit User ${messageConstants.API_FAILED}`, err);
+        res.send(err);
+    }
+}
+
+const logOut = async (req, res) => {
+    try {
+        const userData = await getUserData(req, res);
+        const response = await authService.logOut(req.body, userData, res);
+        logger.info(`${messageConstants.RESPONSE_FROM} logOut API`, JSON.stringify(response));
+        res.send(response);
+    } catch (err) {
+        logger.error(`LogOut ${messageConstants.API_FAILED}`, err);
         res.send(err);
     }
 }
@@ -94,4 +106,5 @@ module.exports = {
     resetPassword,
     deleteAccount,
     editUser,
+    logOut,
 }

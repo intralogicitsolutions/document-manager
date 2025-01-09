@@ -12,5 +12,6 @@ const urlConstants = {
     FEEDBACK: '/feedback',
     DELETE_ACCOUNT: '/delete-account',
     EDIT_USER: '/edit-user',
+    LOGOUT: '/logout',
 }
 module.exports = urlConstants;

@@ -10,12 +10,12 @@ const signUp = async (body, file, res) => {
 
         if (file) {
             const result = await cloudinary.uploader.upload(file.path, {
-                resource_type: 'auto', 
+                resource_type: 'auto',
             });
             body.image_path = result.secure_url;
         }
         body['password'] = cryptoGraphy.encrypt(body.password);
-       
+
         const userSchema = new UserSchema(body);
 
         await userSchema.save().then(async (result) => {
@@ -79,32 +79,32 @@ const changePassword = async (body, user, res) => {
         body['new_password'] = cryptoGraphy.encrypt(body.new_password);
         await UserSchema.findOneAndUpdate(
             { _id: user._id },
-            { password: body['new_password']}
+            { password: body['new_password'] }
         ).then(async (result) => {
-                if (result.length !== 0) {
-                    const mailContent = {
-                        first_name: user.first_name,
-                        last_name: user.last_name
-                    }
-                    // await mail.sendMailToUser(mailTemplateConstants.FORGOTTED_PASS_TEMPLATE, user.email_id, mailSubjectConstants.FORGOTTED_PASS_SUBJECT, res, mailContent);
-                    logger.info(`${messageConstants.PASSWORD_FORGOT} for ${user.email_id}`);
-                    return responseData.success(res, {}, messageConstants.PASSWORD_FORGOT);
-                } else {
-                    logger.error(`${messageConstants.PASSWORD_NOT_FORGOT} for ${user.email_id}`);
-                    return responseData.fail(res, messageConstants.PASSWORD_NOT_FORGOT, 403)
+            if (result.length !== 0) {
+                const mailContent = {
+                    first_name: user.first_name,
+                    last_name: user.last_name
                 }
-            })
+                // await mail.sendMailToUser(mailTemplateConstants.FORGOTTED_PASS_TEMPLATE, user.email_id, mailSubjectConstants.FORGOTTED_PASS_SUBJECT, res, mailContent);
+                logger.info(`${messageConstants.PASSWORD_FORGOT} for ${user.email_id}`);
+                return responseData.success(res, {}, messageConstants.PASSWORD_FORGOT);
+            } else {
+                logger.error(`${messageConstants.PASSWORD_NOT_FORGOT} for ${user.email_id}`);
+                return responseData.fail(res, messageConstants.PASSWORD_NOT_FORGOT, 403)
+            }
+        })
     })
 }
 
 const resetPassword = async (body, userData, res) => {
     return new Promise(async () => {
         body['old_password'] = cryptoGraphy.encrypt(body.old_password);
-        const user = await UserSchema.findOne({_id: userData._id})
-        if(body.old_password !== user.password){
+        const user = await UserSchema.findOne({ _id: userData._id })
+        if (body.old_password !== user.password) {
             logger.error(`${messageConstants.OLD_PASSWORD_NOT_MATCHED} with ${body.old_password}`);
             return responseData.fail(res, messageConstants.OLD_PASSWORD_NOT_MATCHED, 403)
-        }else{
+        } else {
             body['new_password'] = cryptoGraphy.encrypt(body.new_password);
             await UserSchema.findOneAndUpdate(
                 { _id: user._id },
@@ -112,8 +112,8 @@ const resetPassword = async (body, userData, res) => {
             ).then(async (result) => {
                 if (result.length !== 0) {
                     const mailContent = {
-                      first_name: user.first_name,
-                      last_name: user.last_name
+                        first_name: user.first_name,
+                        last_name: user.last_name
                     }
                     // await mail.sendMailToUser(mailTemplateConstants.RESET_PASS_TEMPLATE, user.email, mailSubjectConstants.RESET_PASS_SUBJECT, res, mailContent);
                     logger.info(`${messageConstants.PASSWORD_RESET} for ${user.email_id}`);
@@ -129,15 +129,15 @@ const resetPassword = async (body, userData, res) => {
 
 const deleteAccount = async (body, userData, res) => {
     return new Promise(async () => {
-        try{
+        try {
             const user_id = userData._id;
-            const {  first_name, reason } = body;
+            const { first_name, reason } = body;
 
-            const user = await UserSchema.findOne({ 
-                _id: user_id, 
+            const user = await UserSchema.findOne({
+                _id: user_id,
                 first_name
             });
-           
+
             if (!user) {
                 logger.warn(messageConstants.USER_NOT_FOUND);
                 return responseData.fail(res, messageConstants.USER_NOT_FOUND, 404);
@@ -149,7 +149,7 @@ const deleteAccount = async (body, userData, res) => {
                 return responseData.success(res, {}, messageConstants.ACCOUNT_DELETED_SUCCESSFULLY);
             });
 
-        }catch (err){
+        } catch (err) {
             logger.error(`Error deleting account: ${err.message}`);
             return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR, 500);
         }
@@ -162,25 +162,49 @@ const editUser = async (body, file, userData, res) => {
         try {
             if (file) {
                 const result = await cloudinary.uploader.upload(file?.path, {
-                    resource_type: 'auto', 
+                    resource_type: 'auto',
                 });
                 body.image_path = result?.secure_url;
             }
-           await UserSchema.findByIdAndUpdate(
+            await UserSchema.findByIdAndUpdate(
                 { _id: userData?._id },
                 body,
-                { new: true}
+                { new: true }
             ).then(async () => {
                 logger.info(`${messageConstants.UPDATE_USER}`);
-               return responseData.success(res, body, messageConstants.UPDATE_USER);
+                return responseData.success(res, body, messageConstants.UPDATE_USER);
             });
         } catch (err) {
-            if(err.code === 11000){
+            if (err.code === 11000) {
                 logger.error(`${Object.keys(err.keyValue)} already exists`);
                 return responseData.fail(res, `This emailId '${body.email_id}' already exists `, 403);
             }
             logger.error(messageConstants.INTERNAL_SERVER_ERROR, err);
-                return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
+            return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
+        }
+    });
+}
+
+const logOut = async (body, userData, res) => {
+    return new Promise(async () => {
+        try {
+            const userId = userData._id;
+            await UserSchema.findByIdAndUpdate(
+                { _id: userId },
+                { $unset: { token: "" } },
+                { new: true }
+            ).then((updatedUser) => {
+                if (updatedUser) {
+                    logger.info(messageConstants.LOGGEDOUT_SUCCESSFULLY);
+                    return responseData.success(res, {}, messageConstants.LOGGEDOUT_SUCCESSFULLY);
+                } else {
+                    logger.error(`${messageConstants.USER_NOT_FOUND} for logout`);
+                    return responseData.fail(res, messageConstants.USER_NOT_FOUND, 404);
+                }
+            });
+        } catch (err) {
+            logger.error(messageConstants.INTERNAL_SERVER_ERROR, err);
+            return responseData.fail(res, messageConstants.INTERNAL_SERVER_ERROR);
         }
     });
 }
@@ -201,13 +225,13 @@ const forgotPasswordLink = async (res, user) => {
         link: link
     }
     console.log('link ', link);
-    console.log('User email:', user.email_id); 
+    console.log('User email:', user.email_id);
 
     if (!user.email_id) {
         logger.error("User email is missing");
         return responseData.error(res, {}, "Email address is missing for the user.");
     }
-   await mail.sendMailToUser(mailTemplateConstants.FORGOT_PASS_TEMPLATE, user.email_id, mailSubjectConstants.FORGOT_PASS_SUBJECT, res, mailContent);
+    await mail.sendMailToUser(mailTemplateConstants.FORGOT_PASS_TEMPLATE, user.email_id, mailSubjectConstants.FORGOT_PASS_SUBJECT, res, mailContent);
     return responseData.success(res, {}, messageConstants.EMAIL_SENT_FORGOT_PASSWORD);
 }
 
@@ -219,4 +243,5 @@ module.exports = {
     resetPassword,
     deleteAccount,
     editUser,
+    logOut
 }
